@@ -1,0 +1,7 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="1200" fill="white"/>
+<text x="50%" y="200" text-anchor="middle" font-size="120" font-family="Arial, sans-serif" fill="black">Debit Card</text>
+<text x="50%" y="400" text-anchor="middle" font-size="60" font-family="Arial, sans-serif" fill="black">Your Bolt Card, your rewards.</text>
+<path d="M600 500 C500 500 400 600 400 700 C400 800 500 900 600 900 C700 900 800 800 800 700 C800 600 700 500 600 500" fill="#006DFF"/>
+<rect x="450" y="650" width="300" height="50" rx="25" fill="#E6F0FF"/>
+</svg>

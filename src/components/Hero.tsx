@@ -1,165 +1,128 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, ChevronLeft, ChevronRight } from 'lucide-react';
-import WaitlistForm from './WaitlistForm';
-import type { PrefineryResponse } from '../types/prefinery';
+import type React from "react"
+import { TrendingUp, PiggyBank, CreditCard, Wallet, DollarSign } from "lucide-react"
 
-interface Feature {
-  image: string;
-  title: string;
-  description: string;
-}
-
-interface HeroProps {
-  onWaitlistSubmit: (email: string) => Promise<PrefineryResponse>;
-}
-
-const features: Feature[] = [
-  {
-    image: "/images/p2p.png",
-    title: "Instant Transfers",
-    description: "Send money instantly to anyone, anywhere"
-  },
-  {
-    image: "/images/cc.png",
-    title: "Digital Card",
-    description: "Your Bolt Card, your rewards"
-  },
-  {
-    image: "/images/social.png",
-    title: "Social Banking",
-    description: "Split bills and manage expenses together"
-  },
-  {
-    image: "/images/revolution.png",
-    title: "Join the Revolution",
-    description: "Be part of the next generation of banking"
-  }
-];
-
-const Hero: React.FC<HeroProps> = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
-      opacity: 0
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      zIndex: 1
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? '100%' : '-100%',
-      opacity: 0,
-      zIndex: 0
-    })
-  };
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setCurrentIndex((prevIndex) => (prevIndex + newDirection + features.length) % features.length);
-  };
+const Hero: React.FC = () => {
 
   return (
-    <section className="relative min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-900 via-primary-800 to-secondary-900 text-white overflow-hidden">
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-secondary-500/20 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-primary-500/10 via-transparent to-transparent" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 text-center lg:text-left relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-8"
-          >
-            <div className="flex items-center justify-center lg:justify-start gap-4">
-              <div className="p-3 rounded-2xl bg-gradient-to-br from-secondary-400 to-secondary-600">
-                <Zap className="w-12 h-12 text-white" />
+    <section className="relative min-h-screen w-full overflow-hidden">
+
+      <div className="absolute inset-0 bg-gradient-primary from-primary-900 via-primary-700 to-secondary-600 opacity-90 z-0"></div>
+
+      <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-secondary-500 opacity-20 blur-3xl animate-pulse"></div>
+      <div
+        className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-accent-500 opacity-10 blur-3xl animate-pulse"
+        style={{ animationDelay: "1s" }}
+      ></div>
+
+
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full max-w-6xl gap-8 md:gap-16">
+          {/* Left side - Text content */}
+          <div className="text-center md:text-left p-6 space-y-6">
+            <div className="flex items-center justify-center md:justify-start mb-4">
+              <div className="bg-white p-1 rounded-full shadow-lg mr-4">
+                <img src="/images/bolt-logo.svg" alt="Bolt App Logo" className="h-12 w-12" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white to-secondary-200 text-transparent bg-clip-text">
-                Bolt App
-              </h1>
+              <h1 className="text-5xl font-bold text-white">Bolt Wallet</h1>
             </div>
-            <p className="text-xl text-secondary-100">
-              Join thousands of users who are already managing their money smarter with Bolt
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              <span className="block">Take Control of Your</span>
+              <span className="relative">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-secondary-500">
+                  Financial Future
+                </span>
+              </span>
+            </h2>
+
+            <p className="text-xl text-white/90 max-w-lg">
+              Be among the first to revolutionize how you manage money, track expenses, and build better spending
+              habits.
             </p>
-            
-            <div className="w-full max-w-md mx-auto lg:mx-0">
-              <WaitlistForm/>
-            </div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative mx-auto w-full max-w-[420px]">
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary-400/30 to-primary-500/30 rounded-3xl transform scale-105 blur-xl" />
-              <div className="relative h-[420px] overflow-hidden rounded-3xl shadow-2xl border border-secondary-400/20 bg-gradient-to-br from-primary-800 to-secondary-900">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-secondary-500/20 via-transparent to-transparent">
-                  <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                    <motion.div
-                      key={currentIndex}
-                      custom={direction}
-                      variants={slideVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 }
-                      }}
-                      className="absolute inset-0 flex items-center justify-center p-4 pb-20"
-                    >
-                      <img
-                        src={features[currentIndex].image}
-                        alt={features[currentIndex].title}
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
 
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-900 via-primary-900/95 to-transparent p-4 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-secondary-200 mb-1">{features[currentIndex].title}</h3>
-                  <p className="text-sm text-secondary-100/80">{features[currentIndex].description}</p>
-                </div>
-
-                <button
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-secondary-500/10 backdrop-blur-sm rounded-full p-2 hover:bg-secondary-500/20 transition-colors border border-secondary-400/20"
-                  onClick={() => paginate(-1)}
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-secondary-500/10 backdrop-blur-sm rounded-full p-2 hover:bg-secondary-500/20 transition-colors border border-secondary-400/20"
-                  onClick={() => paginate(1)}
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+            <div className="grid grid-cols-2 gap-4 mt-8">
+              <div className="flex items-center space-x-2 text-white/90">
+                <TrendingUp className="h-5 w-5 text-secondary-400" />
+                <span>Track Spending</span>
+              </div>
+              <div className="flex items-center space-x-2 text-white/90">
+                <PiggyBank className="h-5 w-5 text-secondary-400" />
+                <span>Save Smarter</span>
+              </div>
+              <div className="flex items-center space-x-2 text-white/90">
+                <CreditCard className="h-5 w-5 text-secondary-400" />
+                <span>Manage Cards</span>
+              </div>
+              <div className="flex items-center space-x-2 text-white/90">
+                <Wallet className="h-5 w-5 text-secondary-400" />
+                <span>Budget Better</span>
               </div>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Right side - Form and visual */}
+          <div className="relative">
+            {/* Phone mockup with app preview */}
+            <div className="relative mx-auto w-64 md:w-80 h-[500px] md:h-[600px] bg-primary-950 rounded-[40px] border-[8px] border-primary-800 shadow-2xl overflow-hidden transform rotate-3 hover:rotate-0 transition-all duration-500">
+              {/* Phone notch */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-primary-950 rounded-b-xl z-10"></div>
+
+              {/* App screen */}
+              <div className="h-full w-full bg-gradient-to-b from-primary-900 to-primary-950 p-4 overflow-hidden">
+                {/* App UI elements */}
+                <div className="flex justify-between items-center mb-6 mt-8">
+                  <div className="text-white text-sm font-bold">Bolt</div>
+                  <div className="bg-secondary-500 h-8 w-8 rounded-full flex items-center justify-center">
+                    <DollarSign className="h-4 w-4 text-primary-950" />
+                  </div>
+                </div>
+
+                <div className="text-white text-xl font-bold mb-2">Your Balance</div>
+                <div className="text-secondary-400 text-3xl font-bold mb-6">$12,458.90</div>
+
+                <div className="bg-primary-800/50 rounded-xl p-3 mb-4">
+                  <div className="flex justify-between">
+                    <span className="text-white/70 text-sm">Monthly Budget</span>
+                    <span className="text-white text-sm">$3,200 / $4,000</span>
+                  </div>
+                  <div className="w-full h-2 bg-primary-700 rounded-full mt-2">
+                    <div className="w-[80%] h-full bg-secondary-500 rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="text-white text-sm font-bold mt-6 mb-3">Recent Transactions</div>
+
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex items-center justify-between bg-primary-800/30 p-3 rounded-lg mb-3">
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 rounded-full bg-primary-700 flex items-center justify-center mr-3">
+                        <span className="text-xs text-secondary-400">{["☕", "🛒", "🍔", "🚗"][i - 1]}</span>
+                      </div>
+                      <div>
+                        <div className="text-white text-xs">
+                          {["Coffee Shop", "Grocery Store", "Restaurant", "Gas Station"][i - 1]}
+                        </div>
+                        <div className="text-white/50 text-xs">
+                          {["Today", "Yesterday", "2 days ago", "3 days ago"][i - 1]}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-white text-sm">{["-$4.50", "-$68.32", "-$24.99", "-$45.00"][i - 1]}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Form embed */}
+            <div className="prefinery-form-embed absolute -bottom-10 right-0 md:right-10 bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 shadow-xl w-full max-w-sm">
+              {/* Your form content will be injected here */}
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
+

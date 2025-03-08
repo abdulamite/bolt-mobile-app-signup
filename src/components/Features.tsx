@@ -17,11 +17,6 @@ const features: Feature[] = [
     description: 'Your data is protected with military-grade encryption and security protocols.'
   },
   {
-    image: "/images/cc.png",
-    title: 'Debit Card',
-    description: 'Use tap to pay anywhere in the world.'
-  },
-  {
     image: "/images/debit_card.png",
     title: 'Social Banking',
     description: 'Split bills, share subscriptions, and manage group expenses easily.'
@@ -168,21 +163,6 @@ const Features: React.FC = () => {
           >
             <ChevronRight className="w-6 h-6 text-primary-900" />
           </button>
-
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {features.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setDirection(index > currentIndex ? 1 : -1);
-                  setCurrentIndex(index);
-                }}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-secondary-500' : 'bg-secondary-200'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

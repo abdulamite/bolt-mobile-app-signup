@@ -4,7 +4,7 @@ import { TrendingUp, PiggyBank, CreditCard, Wallet, DollarSign } from "lucide-re
 const Hero: React.FC = () => {
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section className="relative min-h-screen w-full">
 
       <div className="absolute inset-0 bg-gradient-primary from-primary-900 via-primary-700 to-secondary-600 opacity-90 z-0"></div>
 
@@ -92,22 +92,22 @@ const Hero: React.FC = () => {
 
                 <div className="text-white text-sm font-bold mt-6 mb-3">Recent Transactions</div>
 
-                {[1, 2, 3, 4].map((i) => (
+                {[1, 2, 3].map((i) => (
                   <div key={i} className="flex items-center justify-between bg-primary-800/30 p-3 rounded-lg mb-3">
                     <div className="flex items-center">
                       <div className="w-8 h-8 rounded-full bg-primary-700 flex items-center justify-center mr-3">
-                        <span className="text-xs text-secondary-400">{["☕", "🛒", "🍔", "🚗"][i - 1]}</span>
+                        <span className="text-xs text-secondary-400">{["☕", "🛒", "🍔",][i - 1]}</span>
                       </div>
                       <div>
                         <div className="text-white text-xs">
-                          {["Coffee Shop", "Grocery Store", "Restaurant", "Gas Station"][i - 1]}
+                          {["Coffee Shop", "Grocery Store", "Restaurant"][i - 1]}
                         </div>
                         <div className="text-white/50 text-xs">
-                          {["Today", "Yesterday", "2 days ago", "3 days ago"][i - 1]}
+                          {["Today", "Yesterday", "2 days ago"][i - 1]}
                         </div>
                       </div>
                     </div>
-                    <div className="text-white text-sm">{["-$4.50", "-$68.32", "-$24.99", "-$45.00"][i - 1]}</div>
+                    <div className="text-white text-sm">{["-$4.50", "-$68.32", "-$24.99"][i - 1]}</div>
                   </div>
                 ))}
               </div>

@@ -101,7 +101,7 @@ const Features: React.FC = () => {
           </p>
         </div>
 
-        <div ref={ref} className="relative h-[500px] w-full overflow-hidden">
+        <div ref={ref} className="relative h-[500px] w-full">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={currentIndex}
